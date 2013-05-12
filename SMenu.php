@@ -4,7 +4,6 @@ class SMenu extends CMenu
 {
 	public $theme= "sphere-orange";
 	public $submenuClass;	
-	public $submenuWidth = "340px";
 	public $columnWidth ="50%";	
 	/**
 	 * Initializes the widget.
@@ -31,7 +30,9 @@ class SMenu extends CMenu
 		foreach($items as $item)
 		{
 			if(isset($item[0]) && $item[0]=='column'){
-				echo '</ul></div><div class="column" style="width:50%"><ul>';
+				$width = isset($item['width']) ? $item['width'] : "50%";
+
+				echo '</ul></div><div class="column" style="width:'.$width.'"><ul>';
 			}else{
 			$count++;
 			$options=isset($item['itemOptions']) ? $item['itemOptions'] : array();
@@ -70,16 +71,18 @@ class SMenu extends CMenu
 
 			if(isset($item['items']) && count($item['items']))
 			{
+				$subWidth= isset($item['subWidth'])? 'style="width:'.$item['subWidth'].';"': null;
 				$divOpen = false;
+				echo '<div class="submenu" '.$subWidth.' >';
+
 				foreach($item['items'] as $subitem){
 					if(isset($subitem[0]) && $subitem[0]=='column'){
-						echo '<div class="submenu" style="width:'.$this->submenuWidth.'">';
-						echo '<div class="column" style="width:'.$this->columnWidth.'">';
+						$width = isset($subitem['width']) ? $subitem['width'] : "50%";
+						echo '<div class="column" style="width:'.$width.'">';
 						$divOpen = true;
 					}
 				}
-				if(!$divOpen)
-					echo '<div class="submenu">';
+				
 				
 				echo "\n".CHtml::openTag('ul',isset($item['submenuOptions']) ? $item['submenuOptions'] : $this->submenuHtmlOptions)."\n";
 				$this->renderMenuRecursive($item['items'],true);
