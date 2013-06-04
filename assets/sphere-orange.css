@@ -1,14 +1,23 @@
+
     /* 
 http://css3menu.com/sphere-orange.html#
  */
 
 @import "http://fonts.googleapis.com/css?family=Droid+Sans";
+ul#sphere-orange {
+    position: fixed;
+    top:0;
+}
 ul#sphere-orange, ul#sphere-orange ul {
     list-style: none outside none;
-    margin: 0;
+      margin: 0;
     padding: 0;
-    width:100%;
     background-color:#efd5be;
+    box-shadow: 0 2px 0 #BFC1C2;
+    font-size: 0;
+    z-index: 999;
+        width:100%;
+
 }
 ul#sphere-orange, ul#sphere-orange .submenu {
     background-color:#efd5be;
@@ -42,14 +51,6 @@ ul#sphere-orange li:hover {
     z-index: 1;
 }
 
-ul#sphere-orange {
-    box-shadow: 0 2px 0 #BFC1C2;
-    display: inline-block;
-    font-size: 0;
-    padding: 0;
-    position: relative;
-    z-index: 999;
-}
 
 ul#sphere-orange .column {
     float:left;
